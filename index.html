@@ -17,23 +17,17 @@
       --spotify: #1DB954;
       --mono: 'Space Mono', monospace;
       --display: 'Syne', sans-serif;
-      --bg-image: none;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
     body {
-      background-color: #000;
-      background-image: var(--bg-image);
-      background-attachment: fixed;
-      background-size: cover;
-      background-position: center;
+      background: #000;
       color: var(--text);
       font-family: var(--mono);
       min-height: 100vh;
       overflow-x: hidden;
-      position: relative;
     }
 
     body::before {
@@ -41,20 +35,17 @@
       position: fixed;
       inset: 0;
       background-image:
-        linear-gradient(rgba(200,255,0,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(200,255,0,0.025) 1px, transparent 1px);
+        linear-gradient(rgba(200,255,0,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,255,0,0.02) 1px, transparent 1px);
       background-size: 40px 40px;
       pointer-events: none;
       z-index: 0;
     }
 
-    /* ── AURORA EFFECT ── */
+    /* ── AURORA ── */
     .aurora-container {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       pointer-events: none;
       z-index: 0;
       overflow: hidden;
@@ -62,54 +53,54 @@
 
     .aurora {
       position: absolute;
-      width: 200%;
-      height: 200%;
-      top: -50%;
-      left: -50%;
-      opacity: 0.3;
-      filter: blur(80px);
+      width: 160%;
+      height: 160%;
+      top: -30%;
+      left: -30%;
+      opacity: 0.22;
+      filter: blur(90px);
       mix-blend-mode: screen;
-      animation: aurora-wave 8s ease-in-out infinite;
     }
 
     .aurora-1 {
-      background: radial-gradient(ellipse at 20% 50%, rgba(100, 255, 200, 0.4) 0%, transparent 60%);
-      animation-delay: 0s;
+      background: radial-gradient(ellipse at 20% 40%, rgba(80, 255, 180, 0.55) 0%, transparent 55%);
+      animation: aurora1 9s ease-in-out infinite alternate;
     }
-
     .aurora-2 {
-      background: radial-gradient(ellipse at 80% 50%, rgba(150, 100, 255, 0.3) 0%, transparent 60%);
-      animation-delay: 2s;
+      background: radial-gradient(ellipse at 80% 55%, rgba(140, 80, 255, 0.45) 0%, transparent 55%);
+      animation: aurora2 11s ease-in-out infinite alternate;
     }
-
     .aurora-3 {
-      background: radial-gradient(ellipse at 50% 20%, rgba(100, 200, 255, 0.35) 0%, transparent 60%);
-      animation-delay: 4s;
+      background: radial-gradient(ellipse at 50% 15%, rgba(60, 180, 255, 0.4) 0%, transparent 55%);
+      animation: aurora3 13s ease-in-out infinite alternate;
     }
-
     .aurora-4 {
-      background: radial-gradient(ellipse at 60% 70%, rgba(200, 150, 255, 0.3) 0%, transparent 60%);
-      animation-delay: 6s;
+      background: radial-gradient(ellipse at 65% 75%, rgba(200, 120, 255, 0.35) 0%, transparent 55%);
+      animation: aurora4 10s ease-in-out infinite alternate;
     }
 
-    @keyframes aurora-wave {
-      0% {
-        transform: translate(0, 0) rotate(0deg);
-      }
-      25% {
-        transform: translate(50px, -30px) rotate(90deg);
-      }
-      50% {
-        transform: translate(100px, 0) rotate(180deg);
-      }
-      75% {
-        transform: translate(50px, 30px) rotate(270deg);
-      }
-      100% {
-        transform: translate(0, 0) rotate(360deg);
-      }
+    @keyframes aurora1 {
+      0%   { transform: translate(0,   0  ) scale(1);    }
+      50%  { transform: translate(60px,-40px) scale(1.1); }
+      100% { transform: translate(120px, 20px) scale(0.95); }
+    }
+    @keyframes aurora2 {
+      0%   { transform: translate(0,   0  ) scale(1);    }
+      50%  { transform: translate(-80px, 50px) scale(1.15); }
+      100% { transform: translate(-30px,-60px) scale(0.9); }
+    }
+    @keyframes aurora3 {
+      0%   { transform: translate(0,   0  ) scale(1);    }
+      50%  { transform: translate(40px, 80px) scale(1.05); }
+      100% { transform: translate(-60px, 30px) scale(1.1); }
+    }
+    @keyframes aurora4 {
+      0%   { transform: translate(0,   0  ) scale(1);    }
+      50%  { transform: translate(-50px,-30px) scale(0.9); }
+      100% { transform: translate(70px, 50px) scale(1.1); }
     }
 
+    /* ── NAV ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -119,8 +110,8 @@
       justify-content: space-between;
       padding: 1rem 2rem;
       border-bottom: 1px solid var(--border);
-      background: rgba(10,10,10,0.95);
-      backdrop-filter: blur(12px);
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(16px);
     }
     .nav-logo { font-family: var(--display); font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; }
     .nav-logo span { color: var(--accent); }
@@ -131,7 +122,7 @@
       animation: pulse 2s ease-in-out infinite;
     }
 
-    /* ── PAGE LAYOUT ── */
+    /* ── PAGE ── */
     .page {
       position: relative;
       z-index: 1;
@@ -144,169 +135,75 @@
       gap: 2.5rem;
     }
 
-    /* ── HERO TEXT ── */
+    /* ── HERO ── */
     .hero-text { text-align: center; animation: fadeUp 0.5s ease both; }
-    .hero-tag {
-      font-size: 0.68rem; letter-spacing: 0.25em;
-      text-transform: uppercase; color: var(--muted); margin-bottom: 1rem;
-    }
-    .hero-text h1 {
-      font-family: var(--display); font-size: clamp(2.8rem, 10vw, 5.5rem);
-      font-weight: 800; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 1rem;
-    }
+    .hero-tag { font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+    .hero-text h1 { font-family: var(--display); font-size: clamp(2.8rem, 10vw, 5.5rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 1rem; }
     .hero-text h1 em { font-style: normal; color: var(--accent); position: relative; }
-    .hero-text h1 em::after {
-      content: ''; position: absolute; left: 0; bottom: 3px; right: 0;
-      height: 3px; background: var(--accent); opacity: 0.35;
-    }
+    .hero-text h1 em::after { content: ''; position: absolute; left: 0; bottom: 3px; right: 0; height: 3px; background: var(--accent); opacity: 0.35; }
     .hero-sub { font-size: 0.8rem; color: var(--muted); line-height: 1.8; }
 
     /* ── TERMINAL ── */
-    .terminal {
-      width: 100%; background: #0d0d0d; border: 1px solid var(--border);
-      border-radius: 8px; overflow: hidden; text-align: left;
-      animation: fadeUp 0.6s 0.15s ease both;
-    }
-    .terminal-bar {
-      background: #1a1a1a; padding: 0.55rem 1rem;
-      display: flex; align-items: center; gap: 0.45rem;
-      border-bottom: 1px solid var(--border);
-    }
+    .terminal { width: 100%; background: rgba(13,13,13,0.8); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; text-align: left; animation: fadeUp 0.6s 0.15s ease both; }
+    .terminal-bar { background: #1a1a1a; padding: 0.55rem 1rem; display: flex; align-items: center; gap: 0.45rem; border-bottom: 1px solid var(--border); }
     .dot { width: 10px; height: 10px; border-radius: 50%; }
     .dot-r { background: #ff5f57; } .dot-y { background: #febc2e; } .dot-g { background: #28c840; }
     .terminal-body { padding: 1.1rem 1.4rem; font-size: 0.76rem; line-height: 2; color: #ccc; }
-    .t-prompt { color: var(--accent); } .t-cmd { color: #fff; }
-    .t-comment { color: var(--muted); } .t-ok { color: #28c840; }
-    .t-cursor {
-      display: inline-block; width: 8px; height: 1em;
-      background: var(--accent); vertical-align: text-bottom;
-      animation: blink 1s step-end infinite;
-    }
+    .t-prompt { color: var(--accent); } .t-cmd { color: #fff; } .t-comment { color: var(--muted); } .t-ok { color: #28c840; }
+    .t-cursor { display: inline-block; width: 8px; height: 1em; background: var(--accent); vertical-align: text-bottom; animation: blink 1s step-end infinite; }
 
     /* ── SECTION LABEL ── */
-    .section-label {
-      width: 100%; font-size: 0.62rem; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--muted);
-      display: flex; align-items: center; gap: 10px;
-    }
-    .section-label::after {
-      content: ''; flex: 1; height: 1px; background: var(--border);
-    }
+    .section-label { width: 100%; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 10px; }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-    /* ── SKILLS BOARD ── */
-    .skills-board {
-      width: 100%; background: var(--surface);
-      border: 1px solid var(--border); border-radius: 12px;
-      padding: 1.4rem; animation: fadeUp 0.6s 0.25s ease both;
-    }
-
-    .skills-grid {
-      display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem;
-    }
-
+    /* ── SKILLS ── */
+    .skills-board { width: 100%; background: rgba(17,17,17,0.7); border: 1px solid var(--border); border-radius: 12px; padding: 1.4rem; animation: fadeUp 0.6s 0.25s ease both; backdrop-filter: blur(8px); }
+    .skills-grid { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
     .skill-pill {
-      display: flex; align-items: center; gap: 7px;
-      background: #161616; border: 1px solid var(--border);
-      border-radius: 6px; padding: 0.45rem 0.75rem;
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(22,22,22,0.8); border: 1px solid var(--border);
+      border-radius: 6px; padding: 0.45rem 0.8rem;
       font-size: 0.72rem; color: #ccc;
       transition: border-color 0.2s, color 0.2s, background 0.2s;
       cursor: default;
     }
-    .skill-pill:hover {
-      border-color: var(--accent); color: #fff; background: #1a1a1a;
-    }
-    .skill-pill svg {
-      width: 15px; height: 15px; flex-shrink: 0;
-    }
+    .skill-pill:hover { border-color: var(--accent); color: #fff; background: rgba(26,26,26,0.9); }
+    .skill-pill img { width: 16px; height: 16px; flex-shrink: 0; object-fit: contain; }
 
-    /* ── WIDGET SHARED ── */
-    .widget-block {
-      width: 100%; display: flex; flex-direction: column; gap: 0.6rem;
-      animation: fadeUp 0.6s 0.3s ease both;
-    }
+    /* ── WIDGETS ── */
+    .widget-block { width: 100%; display: flex; flex-direction: column; gap: 0.6rem; animation: fadeUp 0.6s 0.3s ease both; }
     .widget-block + .widget-block { animation-delay: 0.38s; }
-
-    .widget-label {
-      font-size: 0.62rem; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--muted);
-      display: flex; align-items: center; gap: 7px;
-    }
-    .live-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      display: inline-block; animation: pulse 1.5s ease infinite;
-    }
+    .widget-label { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 7px; }
+    .live-dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; animation: pulse 1.5s ease infinite; }
     .live-dot.discord { background: var(--discord); box-shadow: 0 0 6px var(--discord); }
     .live-dot.spotify  { background: var(--spotify);  box-shadow: 0 0 6px var(--spotify); animation-delay: 0.5s; }
 
     /* ── DISCORD CARD ── */
-    .discord-card {
-      background: #1e1f22; border: 1px solid #333;
-      border-radius: 12px; overflow: hidden;
-      box-shadow: 0 8px 24px rgba(88, 101, 242, 0.15);
-    }
+    .discord-card { background: rgba(30,31,34,0.85); border: 1px solid #333; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 32px rgba(88,101,242,0.12); backdrop-filter: blur(8px); }
     .discord-banner { height: 60px; background: linear-gradient(135deg, #5865F2 0%, #3c45a5 100%); }
     .discord-profile { padding: 0 1.2rem 1.2rem; }
-    .discord-avatar-wrap {
-      position: relative; display: inline-block;
-      margin-top: -28px; margin-bottom: 0.5rem;
-    }
-    .discord-avatar {
-      width: 56px; height: 56px; border-radius: 50%;
-      border: 4px solid #1e1f22; background: #36393f;
-      display: block; object-fit: cover;
-    }
-    .discord-avatar-placeholder {
-      width: 56px; height: 56px; border-radius: 50%;
-      border: 4px solid #1e1f22; background: #5865F2;
-      display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
-    }
-    .discord-status-ring {
-      position: absolute; bottom: 2px; right: 2px;
-      width: 14px; height: 14px; border-radius: 50%;
-      border: 3px solid #1e1f22; background: #80848e; transition: background 0.4s;
-    }
+    .discord-avatar-wrap { position: relative; display: inline-block; margin-top: -28px; margin-bottom: 0.5rem; }
+    .discord-avatar { width: 56px; height: 56px; border-radius: 50%; border: 4px solid #1e1f22; background: #36393f; display: block; object-fit: cover; }
+    .discord-avatar-placeholder { width: 56px; height: 56px; border-radius: 50%; border: 4px solid #1e1f22; background: #5865F2; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; }
+    .discord-status-ring { position: absolute; bottom: 2px; right: 2px; width: 14px; height: 14px; border-radius: 50%; border: 3px solid #1e1f22; background: #80848e; transition: background 0.4s; }
     .discord-username { font-family: var(--display); font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.15rem; }
     .discord-tag { font-size: 0.68rem; color: #888; margin-bottom: 0.8rem; }
     .discord-status-text { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.6rem; }
-    .discord-activity {
-      background: #2b2d31; border-radius: 8px; padding: 0.75rem 1rem;
-      font-size: 0.7rem; color: #b5bac1; line-height: 1.6; min-height: 52px;
-    }
+    .discord-activity { background: #2b2d31; border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.7rem; color: #b5bac1; line-height: 1.6; min-height: 52px; }
     .discord-activity-name { color: #fff; font-weight: 700; font-size: 0.72rem; }
     .discord-activity-detail { color: #888; }
     .loading-pulse { animation: pulse 1s ease infinite; }
 
     /* ── SPOTIFY CARD ── */
-    .spotify-card {
-      background: #121212; border: 1px solid #222;
-      border-radius: 12px; overflow: hidden;
-      padding: 1.2rem; display: flex; flex-direction: column; gap: 1rem; min-height: 100px;
-      box-shadow: 0 8px 24px rgba(29, 185, 84, 0.15);
-    }
-    .spotify-not-playing {
-      display: flex; align-items: center; justify-content: center;
-      gap: 0.6rem; color: var(--muted); font-size: 0.72rem; padding: 0.5rem 0;
-    }
+    .spotify-card { background: rgba(18,18,18,0.85); border: 1px solid #222; border-radius: 12px; padding: 1.2rem; display: flex; flex-direction: column; gap: 1rem; min-height: 100px; box-shadow: 0 8px 32px rgba(29,185,84,0.1); backdrop-filter: blur(8px); }
+    .spotify-not-playing { display: flex; align-items: center; justify-content: center; gap: 0.6rem; color: var(--muted); font-size: 0.72rem; padding: 0.5rem 0; }
     .spotify-header { display: flex; align-items: center; justify-content: space-between; }
-    .spotify-label-text {
-      font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--spotify); display: flex; align-items: center; gap: 6px;
-    }
+    .spotify-label-text { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--spotify); display: flex; align-items: center; gap: 6px; }
     .spotify-track { display: flex; gap: 1rem; align-items: center; }
-    .spotify-art {
-      width: 64px; height: 64px; border-radius: 6px;
-      object-fit: cover; background: #282828; flex-shrink: 0;
-    }
-    .spotify-art-placeholder {
-      width: 64px; height: 64px; border-radius: 6px;
-      background: #282828; display: flex; align-items: center;
-      justify-content: center; font-size: 1.6rem; flex-shrink: 0;
-    }
+    .spotify-art { width: 64px; height: 64px; border-radius: 6px; object-fit: cover; background: #282828; flex-shrink: 0; }
+    .spotify-art-placeholder { width: 64px; height: 64px; border-radius: 6px; background: #282828; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0; }
     .spotify-info { display: flex; flex-direction: column; gap: 3px; overflow: hidden; }
-    .spotify-song {
-      font-family: var(--display); font-weight: 700; font-size: 0.9rem; color: #fff;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
+    .spotify-song { font-family: var(--display); font-weight: 700; font-size: 0.9rem; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .spotify-artist { font-size: 0.72rem; color: #888; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .spotify-album  { font-size: 0.65rem; color: #555; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .spotify-bar-wrap { display: flex; flex-direction: column; gap: 5px; }
@@ -321,23 +218,8 @@
     .spotify-eq span:nth-child(4) { animation-duration: 1.0s; animation-delay: 0.05s; }
 
     /* ── FOOTER ── */
-    footer {
-      position: relative; z-index: 1; border-top: 1px solid var(--border);
-      padding: 1.4rem 2rem; display: flex; align-items: center;
-      justify-content: space-between; font-size: 0.68rem; color: var(--muted);
-      flex-wrap: wrap; gap: 1rem;
-    }
-    .footer-code {
-      background: #111; border: 1px solid var(--border);
-      padding: 3px 10px; border-radius: 4px; color: var(--accent);
-    }
-
-    .blob {
-      position: fixed; width: 500px; height: 500px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(200,255,0,0.05) 0%, transparent 70%);
-      pointer-events: none; z-index: 0; top: 20%; left: 50%;
-      transform: translate(-50%, -50%); filter: blur(40px);
-    }
+    footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 1.4rem 2rem; display: flex; align-items: center; justify-content: space-between; font-size: 0.68rem; color: var(--muted); flex-wrap: wrap; gap: 1rem; }
+    .footer-code { background: #111; border: 1px solid var(--border); padding: 3px 10px; border-radius: 4px; color: var(--accent); }
 
     @keyframes pulse  { 0%,100%{opacity:1} 50%{opacity:0.55} }
     @keyframes blink  { 0%,100%{opacity:1} 50%{opacity:0} }
@@ -347,14 +229,13 @@
 </head>
 <body>
 
+<!-- AURORA -->
 <div class="aurora-container">
   <div class="aurora aurora-1"></div>
   <div class="aurora aurora-2"></div>
   <div class="aurora aurora-3"></div>
   <div class="aurora aurora-4"></div>
 </div>
-
-<div class="blob"></div>
 
 <nav>
   <div class="nav-logo">dev<span>.</span>test</div>
@@ -388,110 +269,61 @@
   <!-- SKILLS -->
   <div class="section-label">// skills</div>
   <div class="skills-board">
-    <div class="skills-grid" id="skills-grid">
+    <div class="skills-grid">
 
       <div class="skill-pill">
-        <!-- Python -->
-        <svg viewBox="0 0 24 24" fill="#3776AB" xmlns="http://www.w3.org/2000/svg">
-          <path d="M11.914 0C5.82 0 6.2 2.656 6.2 2.656l.007 2.752h5.814v.826H3.898S0 5.789 0 11.969c0 6.18 3.403 5.96 3.403 5.96h2.031v-2.867s-.109-3.402 3.344-3.402h5.766s3.234.052 3.234-3.128V3.165c0-2.046-.246-3.137-.529-3.437-.246-.27-.628-.45-1.123-.45h-.141V0h-.314c-.833 0-1.592.163-2.106.446"/>
-          <path d="M12.086 24c6.094 0 5.714-2.656 5.714-2.656l-.007-2.752h-5.814v-.826h8.123S24 18.211 24 12.031c0-6.18-3.403-5.96-3.403-5.96h-2.031v2.867s.109 3.402-3.344 3.402H9.456s-3.234-.052-3.234 3.128v3.804c0 2.046.246 3.137.529 3.437.246.27.628.45 1.123.45h.141v.833h.314c.833 0 1.592-.163 2.106-.446"/>
-        </svg>
+        <img src="https://cdn.simpleicons.org/python/3776AB" alt="Python"/>
         Python
       </div>
-
       <div class="skill-pill">
-        <!-- Linux -->
-        <svg viewBox="0 0 24 24" fill="#FCC624" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489.117.779.567 1.479 1.102 1.96-.244.959-.417 1.429-.542 2.231-.098.652-.093 1.501.828 1.876 1.265.505 2.865-.888 3.622-1.697.393.037.766.051 1.107.051 3.331 0 6.079-1.869 6.929-4.386.339-.216.65-.441.933-.676l1.905-1.376c1.234-.915 2.223-2.187 2.767-3.682.543-1.495.545-3.142-.04-4.663.035-.36.057-.72.057-1.089 0-4.262-3.437-7.714-7.679-7.714z"/>
-        </svg>
+        <img src="https://cdn.simpleicons.org/linux/FCC624" alt="Linux"/>
         Linux
       </div>
-
       <div class="skill-pill">
-        <!-- JavaScript -->
-        <svg viewBox="0 0 24 24" fill="#F7DF1E" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.678 1.6-.199 1.6-.199.283-.455.387-.968.365-1.685-.074-1.235-.913-2.103-2.049-2.872-.88-.564-1.707-.107-1.986.825-.118.37-.141.9-.141 1.735 0 .622.032 1.588.031 2.457 0 .663-.011 1.302-.135 1.995-.056.2-.15.389-.203.618-.056.234-.1.584-.108.846 0 .327.106.539.159.886.053.348.118.599.217.978.146.765.815 1.213 1.582 1.213.795 0 1.623-.615 1.623-.615.109-.52.216-1.045.235-1.676.007-.335-.016-.448-.053-.624.308 0 .614 0 .614-.039z"/>
-        </svg>
+        <img src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="JavaScript"/>
         JavaScript
       </div>
-
       <div class="skill-pill">
-        <!-- TypeScript -->
-        <svg viewBox="0 0 24 24" fill="#3178C6" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.294a3.749 3.749 0 0 0-.779-.453 2.5 2.5 0 0 0-.645-.088c-.522 0-.932.164-1.227.492-.295.328-.443.74-.443 1.236 0 .355.086.646.258.872.17.226.451.34.84.34.269 0 .503-.087.701-.26.198-.174.34-.411.424-.712h1.946a3.42 3.42 0 0 1-.233.953 2.632 2.632 0 0 1-.643.763 2.966 2.966 0 0 1-1.003.503 4.026 4.026 0 0 1-1.299.176c-.815 0-1.513-.165-2.092-.496-.579-.331-1.012-.826-1.298-1.484-.287-.658-.43-1.45-.43-2.377 0-.934.143-1.729.43-2.384.286-.655.719-1.151 1.299-1.489.579-.337 1.276-.506 2.092-.506zm-5.681 1.566h2.979V9.75H7.807v8.5H5.825V9.75z"/>
-        </svg>
+        <img src="https://cdn.simpleicons.org/typescript/3178C6" alt="TypeScript"/>
         TypeScript
       </div>
-
       <div class="skill-pill">
-        <!-- Docker -->
-        <svg viewBox="0 0 24 24" fill="#2496ED" xmlns="http://www.w3.org/2000/svg">
-          <path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.594a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m0-2.992h2.118a.186.186 0 00.186-.186V.594a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185M8.365 2.656h2.118a.186.186 0 00.186-.185V.594a.186.186 0 00-.186-.185H8.365a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185M19.85 11.078h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.186.185v1.888c0 .102.083.185.186.185m-2.952-5.43h2.118a.186.186 0 00.186-.186V3.594a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m0-2.992h2.118a.186.186 0 00.186-.186V.594a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185M5.411 13.15h2.118a.186.186 0 00.186-.185v-1.888a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m13.888 0h2.118a.186.186 0 00.186-.185v-1.888a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185M5.411 8.618h2.118a.186.186 0 00.186-.185V6.545a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185"/>
-        </svg>
+        <img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker"/>
         Docker
       </div>
-
       <div class="skill-pill">
-        <!-- Git -->
-        <svg viewBox="0 0 24 24" fill="#F05032" xmlns="http://www.w3.org/2000/svg">
-          <path d="M23.546 10.93L13.067.452c-.604-.603-1.582-.603-2.188 0L8.708 2.627l2.76 2.76c.645-.215 1.379-.07 1.889.441.516.515.658 1.258.438 1.9l2.658 2.66c.645-.223 1.387-.078 1.9.435.721.72.721 1.884 0 2.604-.72.72-1.884.72-2.604 0-.387-.387-.603-.9-.603-1.44H9.148c-.603 0-1.092.489-1.092 1.092v6.606c.172.133.344.267.516.4.721.52 1.9.504 2.604-.215.72-.72.72-1.884 0-2.604-.387-.386-.95-.6-1.5-.55V7.27l5.882-5.882v1.485c-.16.02-.315.08-.45.176-.721.52-1.92.504-2.604-.215-.72-.72-.72-1.884 0-2.604.72-.72 1.884-.72 2.604 0 .176.176.332.375.442.587l2.758-2.76"/>
-        </svg>
+        <img src="https://cdn.simpleicons.org/git/F05032" alt="Git"/>
         Git
       </div>
-
       <div class="skill-pill">
-        <!-- Node.js -->
-        <svg viewBox="0 0 24 24" fill="#339933" xmlns="http://www.w3.org/2000/svg">
-          <path d="M11.998,24c-0.321,0-0.641-0.084-0.922-0.247l-2.936-1.737c-0.438-0.245-0.224-0.332-0.08-0.383c0.585-0.203,0.703-0.25,1.328-0.604c0.065-0.037,0.151-0.023,0.218,0.017l2.256,1.339c0.086,0.047,0.206,0.047,0.283,0l8.772-5.059c0.085-0.049,0.139-0.138,0.139-0.235V6.931c0-0.099-0.053-0.191-0.139-0.239L12.274,1.636c-0.086-0.049-0.201-0.049-0.287,0L3.73,6.692C3.644,6.741,3.589,6.83,3.589,6.931v10.107c0,0.099,0.056,0.189,0.141,0.238l2.409,1.392c1.307,0.654,2.108-0.116,2.108-0.89V7.787c0-0.14,0.111-0.25,0.25-0.25h1.081c0.14,0,0.25,0.11,0.25,0.25v10.002c0,1.745-0.951,2.745-2.604,2.745c-0.508,0-0.908,0-2.026-0.551l-2.31-1.332C0.555,18.186,0,17.238,0,16.038V5.924c0-1.201,0.556-2.146,1.544-2.748l8.772-5.06c0.943-0.529,2.2-0.529,3.144,0l8.773,5.06c0.988,0.602,1.544,1.547,1.544,2.748v10.114c0,1.199-0.556,2.147-1.544,2.748l-8.773,5.061C12.639,23.916,12.317,24,11.998,24zM12.407,17.688c-3.839,0-4.646-1.761-4.646-3.242c0-0.14,0.111-0.25,0.25-0.25h1.085c0.126,0,0.232,0.092,0.248,0.216c0.169,1.133,0.673,1.692,3.063,1.692c1.881,0,2.68-0.425,2.68-1.425c0-0.576-0.229-1.002-3.141-1.289c-2.437-0.232-3.951-0.776-3.951-2.71c0-1.784,1.506-2.856,3.929-2.856c2.763,0,4.137,0.959,4.311,3.016c0.017,0.135-0.035,0.267-0.141,0.357c-0.106,0.091-0.252,0.143-0.398,0.143h-1.084c-.119,0-.226-.082-.248-.199c-.275-1.232-.946-1.625-2.44-1.625c-1.763,0-1.968.615-1.968,1.075c0,0.559.242.724,3.041,1.041c2.898.349,3.989.842,3.989,2.766c0,1.922-1.603,3.027-4.354,3.027"/>
-        </svg>
+        <img src="https://cdn.simpleicons.org/nodedotjs/339933" alt="Node.js"/>
         Node.js
       </div>
-
       <div class="skill-pill">
-        <!-- Bash -->
-        <svg viewBox="0 0 24 24" fill="#4EAA25" xmlns="http://www.w3.org/2000/svg">
-          <path d="M5.432 10.813a.371.371 0 00-.182.34v1.495c0 .136.07.266.182.34l.087.053 1.847-1.847v-.044l-1.847-1.847zm2.498 2.498l-.614.614c-.17.17-.445.17-.615 0l-1.884-1.885a.435.435 0 010-.614l.614-.614c.17-.17.445-.17.615 0l1.884 1.885a.435.435 0 010 .614zm5.27-.675l-3.732 3.732c-.247.248-.247.65 0 .897l.897.897c.248.248.649.248.897 0l3.732-3.732c.247-.247.247-.648 0-.896l-.897-.898c-.248-.247-.649-.247-.897 0z"/>
-          <path d="M21.777 9.531c0-4.242-3.437-7.684-7.679-7.684-4.242 0-7.685 3.437-7.685 7.684 0 2.677 1.372 5.03 3.439 6.4L9.78 17.73l1.217 1.217 3.101-3.101v-1.72h-1.72v.813a5.989 5.989 0 01-2.908-1.33v2.438l3.109 3.109 3.109-3.109v-2.439a5.989 5.989 0 01-2.908 1.331v1.72h-1.72l3.101 3.101 1.217-1.217-1.249-1.249c2.067-1.369 3.439-3.722 3.439-6.399z"/>
-        </svg>
+        <img src="https://cdn.simpleicons.org/gnubash/4EAA25" alt="Bash"/>
         Bash
       </div>
-
       <div class="skill-pill">
-        <!-- React -->
-        <svg viewBox="0 0 24 24" fill="#61DAFB" xmlns="http://www.w3.org/2000/svg">
-          <path d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.585-2.128 1.856-2.128 3.995 0 2.41.138 4.779.464 7.099.326 2.32.742 4.979 1.241 7.977.502 3.03 1.084 4.947 1.742 5.748 1.32 1.497 2.747 2.212 4.308 2.212 1.56 0 2.987-.715 4.304-2.212.66-.801 1.242-2.748 1.74-5.748.502-2.998.916-5.59 1.241-7.98.327-2.32.464-4.repeated.464-7.098 0-2.13-.golly-3.404-2.128-3.99-.324-.181-.696-.274-1.106-.274z"/>
-        </svg>
+        <img src="https://cdn.simpleicons.org/react/61DAFB" alt="React"/>
         React
       </div>
-
       <div class="skill-pill">
-        <!-- PostgreSQL -->
-        <svg viewBox="0 0 24 24" fill="#4169E1" xmlns="http://www.w3.org/2000/svg">
-          <path d="M17.128 0a10.134 10.134 0 00-2.755.403l-.063.02A10.922 10.922 0 0012.6.258C11.422.238 10.45.524 9.7 1.09c-.294-.031-.64-.044-1.036-.044C7.342 1.046 5.67 1.5 4.34 2.48A9.275 9.275 0 001.5 6.485 10.945 10.945 0 000 12.5c0 .993.057 1.95.164 2.868.202 1.75.65 3.424 1.29 4.962.639 1.538 1.462 2.888 2.44 3.971 1.878 2.091 4.275 3.577 6.876 4.248 2.6.67 5.427.67 8.027 0 2.6-.671 4.998-2.157 6.876-4.248.978-1.083 1.801-2.433 2.44-3.97.64-1.539 1.088-3.213 1.29-4.963.107-.918.164-1.875.164-2.868 0-4.325-1.75-8.23-4.573-11.07-1.382-1.383-3.062-2.435-4.917-3.066a10.077 10.077 0 00-.944-.24zm-5.128 23.06c-2.15 0-4.23-.556-6.015-1.533-1.786-.977-3.156-2.35-4.036-3.961-.88-1.61-1.323-3.39-1.323-5.226 0-1.836.443-3.616 1.323-5.226.88-1.61 2.25-2.984 4.036-3.961 1.785-.977 3.865-1.533 6.015-1.533 2.15 0 4.23.556 6.016 1.533 1.785.977 3.156 2.351 4.036 3.961.88 1.61 1.323 3.39 1.323 5.226 0 1.836-.443 3.616-1.323 5.226-.88 1.61-2.25 2.984-4.036 3.961-1.786.977-3.866 1.533-6.016 1.533z"/>
-        </svg>
+        <img src="https://cdn.simpleicons.org/postgresql/4169E1" alt="PostgreSQL"/>
         PostgreSQL
       </div>
-
       <div class="skill-pill">
-        <!-- VS Code -->
-        <svg viewBox="0 0 24 24" fill="#007ACC" xmlns="http://www.w3.org/2000/svg">
-          <path d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.494 1.494 0 0 0 1.705.29l4.94-2.377a1.5 1.5 0 0 0 .833-1.342V3.929a1.5 1.5 0 0 0-.833-1.342z"/>
-        </svg>
+        <img src="https://cdn.simpleicons.org/visualstudiocode/007ACC" alt="VS Code"/>
         VS Code
       </div>
-
       <div class="skill-pill">
-        <!-- Rust -->
-        <svg viewBox="0 0 24 24" fill="#CE422B" xmlns="http://www.w3.org/2000/svg">
-          <path d="M23.834 11.49l-1.044-.645a13.2 13.2 0 0 0-.028-.292l.902-.805a.342.342 0 0 0-.1-.566l-1.133-.4a12.793 12.793 0 0 0-.087-.284l.738-.947a.34.34 0 0 0-.2-.543l-1.19-.144a11.91 11.91 0 0 0-.159-.266l.545-1.084a.343.343 0 0 0-.341-.476l-1.303.094a11.386 11.386 0 0 0-.216-.238l.3-1.282a.343.343 0 0 0-.544-.301l-1.035.744a11.61 11.61 0 0 0-.266-.187l.01-1.322a.342.342 0 0 0-.694-.014l-.22 1.301c-.085-.028-.174-.054-.262-.08l-.735-1.152a.342.342 0 0 0-.592.13l-.405 1.27a12.053 12.053 0 0 0-.287-.07l-1.146-.912a.343.343 0 0 0-.568.25l.177 1.296c-.082.01-.163.025-.245.041l-1.304-.618a.342.342 0 0 0-.479.365l.668 1.178c-.073.035-.145.073-.216.113l-1.208-.732a.342.342 0 0 0-.54.277l.885 1.047c-.06.052-.118.107-.176.164l-1.259-.42a.343.343 0 0 0-.472.32l1.058.932a11.788 11.788 0 0 0-.127.19l-1.223.155a.343.343 0 0 0-.264.476l1.173.781c-.036.067-.07.138-.104.21l-1.197.378a.343.343 0 0 0-.087.566l1.225.58a11.886 11.886 0 0 0-.042.238l-1.073.723a.342.342 0 0 0 .104.596l1.209-.152a12.25 12.25 0 0 0 .035.257l-.978.974a.342.342 0 0 0 .253.577l1.164-.366c.04.077.082.152.126.226l-.816 1.168a.343.343 0 0 0 .35.518l1.069-.623c.06.068.122.135.186.2l-.62 1.296a.342.342 0 0 0 .429.457l.944-.898c.075.056.152.11.23.161l-.387 1.367a.343.343 0 0 0 .502.38l.787-1.127a12.506 12.506 0 0 0 .278.132l-.122 1.413a.342.342 0 0 0 .548.309l.597-1.323c.09.03.18.058.271.083l.145 1.407a.343.343 0 0 0 .585.228l.388-1.293c.085.02.172.037.26.05l.427 1.296a.343.343 0 0 0 .6.123l.16-1.399c.088.008.177.012.266.012a12.645 12.645 0 0 0 .267-.012l.16 1.4a.343.343 0 0 0 .6-.124l.427-1.295c.088-.013.175-.03.26-.05l.388 1.293a.343.343 0 0 0 .585-.228l.145-1.407c.091-.025.181-.053.271-.083l.597 1.323a.342.342 0 0 0 .548-.309l-.122-1.413c.098-.034.194-.072.288-.112l.787 1.127a.343.343 0 0 0 .502-.38l-.387-1.368c.078-.05.154-.103.23-.16l.944.897a.343.343 0 0 0 .35-.517l-.816-1.168c.064-.066.126-.133.186-.2l1.069.623a.343.343 0 0 0 .35-.518l-.978-.974c.041-.086.08-.173.117-.26l1.164.366a.342.342 0 0 0 .253-.577l-1.073-.723c.032-.08.061-.16.088-.242l1.209.152a.342.342 0 0 0 .104-.596l-1.197-.378c.034-.072.068-.143.1-.216l1.225-.58a.343.343 0 0 0-.087-.566l-1.223-.156a12.053 12.053 0 0 0 .126-.189l1.173-.781a.343.343 0 0 0-.264-.476l-1.259.42c.058-.058.115-.117.17-.178l1.058-.932a.342.342 0 0 0-.54-.277l-1.208.732c.071-.04.143-.078.213-.118l.668-1.178a.342.342 0 0 0-.479-.365l-1.304.618c.082-.016.163-.031.245-.041l.177-1.296a.343.343 0 0 0-.568-.25l-1.146.912a12.053 12.053 0 0 0-.287.07l-.405-1.27a.342.342 0 0 0-.592-.13l-.735 1.152c-.088.026-.176.052-.262.08l-.22-1.301a.342.342 0 0 0-.694.014l.01 1.322c-.092.06-.182.122-.266.187l-1.035-.744a.343.343 0 0 0-.544.301l.3 1.282c-.073.075-.143.153-.216.238l-1.303-.094a.343.343 0 0 0-.341.476l.545 1.084a11.91 11.91 0 0 0-.159.266l-1.19.144a.34.34 0 0 0-.2.543l.738.947a12.793 12.793 0 0 0-.087.284l-1.133.4a.342.342 0 0 0-.1.566l.902.805a13.2 13.2 0 0 0-.028.292l-1.044.645a.343.343 0 0 0 0 .596l1.044.645a13.2 13.2 0 0 0 .028.292l-.902.805a.342.342 0 0 0 .1.566l1.133.4a12.793 12.793 0 0 0 .087.284l-.738.947a.34.34 0 0 0 .2.543l1.19.144c.054.087.108.172.159.266l-.545 1.084a.343.343 0 0 0 .341.476l1.303-.094c.073.085.143.169.216.238l-.3 1.282a.343.343 0 0 0 .544.301l1.035-.744c.084.065.174.126.266.187l-.177 1.296a.343.343 0 0 0 .568.25l1.146-.912c.095.023.191.045.287.07l.405 1.27a.342.342 0 0 0 .592.13l.735-1.152c.088.026.176.052.262.08l.22 1.301a.342.342 0 0 0 .694-.014l-.01-1.322c.092-.06.182-.122.266-.187l1.035.744a.343.343 0 0 0 .544-.301l-.3-1.282c.073-.075.143-.153.216-.238l1.303.094a.343.343 0 0 0 .341-.476l-.545-1.084a11.91 11.91 0 0 0 .159-.266l1.19-.144a.34.34 0 0 0 .2-.543l-.738-.947a12.793 12.793 0 0 0 .087-.284l1.133-.4a.342.342 0 0 0 .1-.566l-.902-.805a13.2 13.2 0 0 0 .028-.292l1.044-.645a.343.343 0 0 0 0-.596z"/>
-        </svg>
+        <img src="https://cdn.simpleicons.org/rust/CE422B" alt="Rust"/>
         Rust
       </div>
 
     </div>
   </div>
 
-  <!-- DISCORD WIDGET -->
+  <!-- PRESENCE -->
   <div class="section-label">// presence</div>
 
   <div class="widget-block">
@@ -516,7 +348,6 @@
     </div>
   </div>
 
-  <!-- SPOTIFY WIDGET -->
   <div class="widget-block">
     <div class="widget-label">
       <span class="live-dot spotify"></span>
@@ -538,14 +369,6 @@
 </footer>
 
 <script>
-  // ── SET CUSTOM BACKGROUND IMAGE ──
-  // Change this URL to your custom PNG image URL
-  const BG_IMAGE_URL = ''; // Leave empty for pure black background
-  
-  if (BG_IMAGE_URL) {
-    document.documentElement.style.setProperty('--bg-image', `url('${BG_IMAGE_URL}')`);
-  }
-
   const USER_ID = '972106035294777424';
   const WS_URL  = 'wss://api.lanyard.rest/socket';
 
